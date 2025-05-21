@@ -1,26 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
+	function test() {
+		let i = 0;
+		console.log(i++);
+	}
 	return (
 		<header>
 			<p>Logo</p>
 			<nav>
 				<ul>
 					<li>
-						<Link to="/">Home</Link>
+						<NavLink to="/">Home</NavLink>
 					</li>
 					<li>
-						<Link to="/categories">Categories👉</Link>
+						<NavLink to="/categories">Categories👉</NavLink>
 					</li>
 					<li>
-						<Link to="/about">About</Link>
+						<NavLink onClick={test()} to="/about">About</NavLink>
 					</li>
 					<li>
-						<Link to="/auth/login">Login</Link>
+						<NavLink to="/auth/login">Login</NavLink>
 					</li>
 					<li>
-						<Link to="/auth/register">Register</Link>
+						<NavLink to="/auth/register">Register</NavLink>
 					</li>
 				</ul>
 			</nav>
