@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const arr1 = [{
+            id: 1, name: 'hieu',
+            id: 2, name: 'hieu1',
+
+        }]
+        console.log(arr1);
+        console.log(typeof arr1);
+
+
+
+        const str1 = JSON.stringify(arr1);
+        console.log(str1);
+        console.log(typeof str1);
+
+        const str2 = JSON.parse(str1);
+        console.log(str2);
+        console.log(typeof str2);
+
+        console.log('-------------------------------------------------------------------------------------------');
+        const products = [{ id: 1, name: 'hieu' }]
+        localStorage.setItem("products", JSON.stringify(products));
+
+        const student = {
+            student: [1],
+            addStudent: function (student) {
+                this.student.push(student);
+            },
+            test1: null,
+        };
+        console.log(JSON.stringify(student));
+        //json
+        //- không xử lí được function
+        // không lưu được thuộc tính có value là undefine
+        // NaN khi lưu được convert thành null
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body.dark {
+        background-color: rgb(36, 8, 8);
+    }
+
+    body.light {
+        background-color: antiquewhite;
+    }
+</style>
+
+<body id="body" class="">
+    <h1>test mode</h1>
+    <label for="theme">Toggle Theme</label>
+    <input type="checkbox" id="theme" title="Toggle change" onclick="changeTheme()">
+    <script>
+        const themeElement = document.getElementById('theme');
+        function changeTheme() {
+            //document.getElementById('body');
+            const checked = event.target.checked;
+            if (checked) {
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark')
+            } else {
+                document.body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
+</body>
+
+</html>

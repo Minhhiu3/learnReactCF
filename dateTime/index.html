@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body>.clock .hour {
+        width: 100px;
+        height: 50px;
+        border: 1px solid red;
+        border-radius: 1px;
+    }
+
+    body>.clock .min {
+        width: 100px;
+        height: 50px;
+        border: 1px solid rgb(192, 174, 75);
+        border-radius: 1px;
+    }
+
+    body>.clock .secon {
+        width: 100px;
+        height: 50px;
+        border: 1px solid blueviolet;
+        border-radius: 1px;
+    }
+
+    .clock {
+        display: flex;
+        width: 100%;
+        height: auto;
+        gap: 10px;
+    }
+
+    .clock>.common>.h2 {
+        color: black;
+    }
+
+    .clock>.common {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<body>
+    dong ho
+    <!-- <div class="clock">
+        <div class="hour common">
+            <p id="hour"></p>
+        </div>
+        <div class="min common">
+            <p id="minute"></p>
+        </div>
+        <div class="secon common">
+            <p id="secon"></p>
+        </div>
+    </div> -->
+
+    <div>
+        <p id="clock"></p>
+    </div>
+
+
+
+
+    <script src="setTimeoutAndSetInterval.js"></script>
+</body>
+
+</html>

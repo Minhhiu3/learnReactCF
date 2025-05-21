@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        fetch('https://dummyjson.com/products')
+            .then((result) => {
+                console.log(result);
+                return result.json();
+            })
+            .then((data) => {
+                console.log(data);
+                document.write();
+            })
+            .catch((Error) => console.log(Error));
+        //request : dữ liệu gửi lên server (Bất đồng bộ)------------>
+        //                                                            server
+        //respone : dữ liệu nhận về từ server  <---------------------
+    </script>
+</body>
+
+</html>

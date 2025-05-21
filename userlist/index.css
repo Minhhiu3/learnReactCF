@@ -1,0 +1,95 @@
+body{
+    font-family: "Mulish", sans-serif;
+    font-optical-sizing: auto;
+    
+  
+}
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 10px;
+    
+}
+.search-box{
+    display: flex;
+width: 200px;
+height: 20px;
+padding: 16px;
+align-items: center;
+gap: 8px;
+border-radius: 4px;
+border: 1px solid var(--bfc-8-e-6, #BFC8E5);
+margin-left: 180px;
+   
+}
+.option>ul{
+display: flex;
+}
+.option>ul>li{
+   
+    color: var(--151-b-32, #151B32);
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.search-box>p{
+    margin-right: 8px;
+}
+.search-box>input{
+    display: flex;
+    width: 100px;
+    height: 10px;
+    padding: 5px;
+    align-items: center;
+    border: none;
+   
+    
+    
+}
+a{
+    
+    text-decoration: none;
+}
+li{
+    list-style: none;
+    
+}
+.option{
+    margin-left: 500px;
+    margin-top: -80px;
+}
+.option >ul > li>a{
+    display: inline-block;
+    text-decoration: none;
+    color: var(--151-b-32, #151B32);
+    padding: 8px 15px;
+    border-radius: 8px; /* Bo góc */
+    transition: 0.3s ease-in-out; /* Hiệu ứng mượt mà */
+    
+}
+.option >ul >li > a:hover{
+    background-color: #7A8EFF; /* Màu xanh khi hover */
+    color: white; /* Chữ trắng khi hover */
+}
+.user{
+display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 950px;
+   
+}
+.user-in4{
+
+    display: flex;
+width: 250px;
+height: 150px;
+padding: 24px;
+align-items: flex-start;
+gap: 16px;
+border-radius: 16px;
+background: red;
+
+}

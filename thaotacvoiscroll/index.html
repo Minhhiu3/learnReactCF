@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: rgb(164, 247, 187);
+    }
+
+    body.change {
+        background-color: red;
+    }
+</style>
+
+<body id="body">
+    <h1 id="sizeIn4"></h1>
+    <script>
+        const bd = document.getElementById('body');
+        const size = document.getElementById('sizeIn4');
+        function sizeWindow() {
+            const heg = window.innerHeight;
+            const wid = window.innerWidth;
+            size.innerText = `rong:${wid} | cao:${heg}`;
+            if (heg && heg !== heg) {
+                bd.style.backgroundColor = 'red';
+            }
+        }
+        window.addEventListener('resize', sizeWindow);
+    </script>
+</body>
+
+</html>

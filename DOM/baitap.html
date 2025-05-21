@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Máy Tính Bỏ Túi</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #e0e7ff;
+        font-family: Arial, sans-serif;
+    }
+
+    .calculator {
+        background-color: #f8fafc;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #display {
+        height: 50px;
+        background-color: #ffffff;
+        margin-bottom: 10px;
+        padding: 10px;
+        font-size: 24px;
+        text-align: right;
+        border: 1px solid #d1d5db;
+        border-radius: 5px;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 77px);
+        gap: 5px;
+    }
+
+    button {
+        padding: 15px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #e5e7eb;
+        color: #1f2937;
+    }
+
+    button:hover {
+        background-color: #d1d5db;
+    }
+
+    .operator {
+        background-color: #3b82f6;
+        color: #ffffff;
+    }
+
+    .operator:hover {
+        background-color: #2563eb;
+    }
+
+    .equals {
+        background-color: #10b981;
+        color: #ffffff;
+    }
+
+    .equals:hover {
+        background-color: #059669;
+    }
+
+    .clear {
+        background-color: #ef4444;
+        color: #ffffff;
+    }
+
+    .clear:hover {
+        background-color: #dc2626;
+    }
+</style>
+<!-- readonly -->
+
+<body>
+    <div class="calculator">
+        <input type="text" id="display" value="0" />
+        <div class="buttons">
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button class="clear" onclick="deleteLast()">DEL</button>
+            <button class="operator" onclick="appendToDisplay('/')" value="/">/</button>
+            <button class="operator" onclick="appendToDisplay('*')" value="*">×</button>
+            <button onclick="appendToDisplay('7')" value="7">7</button>
+            <button onclick="appendToDisplay('8')" value="8">8</button>
+            <button onclick="appendToDisplay('9')" value="9">9</button>
+            <button class="operator" onclick="appendToDisplay('-')" value="-">-</button>
+            <button onclick="appendToDisplay('4')" value="4">4</button>
+            <button onclick="appendToDisplay('5')" value="5">5</button>
+            <button onclick="appendToDisplay('6')" value="6">6</button>
+            <button class="operator" onclick="appendToDisplay('+')" value="+">+</button>
+            <button onclick="appendToDisplay('1')" value="1">1</button>
+            <button onclick="appendToDisplay('2')" value="2">2</button>
+            <button onclick="appendToDisplay('3')" value="3">3</button>
+            <button class="equals" onclick="calculate()" value="=">=</button>
+            <button onclick="appendToDisplay('0')" value="0">0</button>
+            <button onclick="appendToDisplay('.')" value=",">.</button>
+            <button style="grid-column: span 2;" onclick="appendToDisplay('00')" value="00">
+                00
+            </button>
+        </div>
+    </div>
+    <script src="biatap.js"></script>
+</body>
+
+</html>
