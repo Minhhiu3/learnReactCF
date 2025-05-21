@@ -1,25 +1,7 @@
 import { useEffect, useState } from "react";
-import api from "../api";
+import api from "../api/index";
 
-/**
- * * input: url, limit, skip
- * * output: list
- */
-
-// * products
-// * users
-
-// * https://dummyjson.com/products/search?q=apple&sortBy=price&order=asc&limit=30&skip=0
-
-// * const params = {
-// * 	seach: "",
-// * 	sort: "price",
-// * 	order: "asc",
-// * 	limit: 12,
-// * 	skip: 0,
-// * };
-
-const useFetchListWithParams = (path, params) => {
+const useFetchList = (path, query) => {
 	const [list, setList] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
@@ -27,10 +9,15 @@ const useFetchListWithParams = (path, params) => {
 	const fetchList = async () => {
 		try {
 			setLoading(true);
-			let paramsString = new URLSearchParams(params).toString();
-			paramsString = paramsString.replace("search", "search?q");
-			console.log(paramsString);
-			const { data } = await api.get(`${path}/${paramsString}`);
+			const page = Number(query.page) || 1;
+			const limit = Number(query.limit) || 12;
+			const skip = (page - 1) * limit;
+
+			const queryClone = { ...query, page, limit, skip };
+
+			const queryString = new URLSearchParams(queryClone).toString();
+			const { data } = await api.get(`${path}/search?${queryString}`);
+
 			setList(data[path]);
 			setLoading(false);
 		} catch (error) {
@@ -42,8 +29,8 @@ const useFetchListWithParams = (path, params) => {
 
 	useEffect(() => {
 		fetchList();
-	}, [params.limit, params.page]);
+	}, [query.limit, query.page]);
 	return [list, loading, error];
 };
 
-export default useFetchListWithParams;
+export default useFetchList;

@@ -24,4 +24,5 @@ const useQueryParams = (query) => {
 	return [params, updateParams, resetParams];
 };
 
+
 export default useQueryParams;
