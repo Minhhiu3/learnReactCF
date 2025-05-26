@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api";
+import { getAllProducts } from "../api/productApi";
 
 /**
  * * input: url, limit, skip
@@ -26,13 +27,12 @@ const useFetchListWithParams = (path, params) => {
 
 	const fetchList = async () => {
 		try {
+			const { data } = await getAllProducts(path);
+			setList(data);
 			setLoading(true);
-			let paramsString = new URLSearchParams(params).toString();
-			paramsString = paramsString.replace("search", "search?q");
-			console.log(paramsString);
-			const { data } = await api.get(`${path}/${paramsString}`);
-			setList(data[path]);
-			setLoading(false);
+			console.log(list);
+
+
 		} catch (error) {
 			setLoading(false);
 			setError(error.message || "Failed!");
@@ -42,7 +42,7 @@ const useFetchListWithParams = (path, params) => {
 
 	useEffect(() => {
 		fetchList();
-	}, [params.limit, params.page]);
+	}, []);
 	return [list, loading, error];
 };
 

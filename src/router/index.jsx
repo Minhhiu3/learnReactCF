@@ -11,6 +11,8 @@ import OrderListPage from "../pages/admin/OrderListPage";
 import BlogListPage from "../pages/admin/BlogListPage";
 import UserListPage from "../pages/admin/UserListPage";
 import ProductListPage from "../pages/admin/ProductListPage";
+import ProductForm from "../pages/admin/ProductForm";
+import ProductList from "../ProductList";
 
 const router = createBrowserRouter([
 	// * Layout Client
@@ -33,6 +35,8 @@ const router = createBrowserRouter([
 			{ path: "orders", element: <OrderListPage /> },
 			{ path: "blogs", element: <BlogListPage /> },
 			{ path: "users", element: <UserListPage /> },
+			{ path: "products/add", element: < ProductForm /> },
+			// { path: "listProduct", element: <ProductList /> }
 			// { path: "settings", element: <BlogListPage /> },
 		],
 	},

@@ -38,6 +38,7 @@ const ProductList = () => {
 	return (
 		<div>
 			<h1>Danh sach san pham</h1>
+			<link to="add">Add Product</link>
 			<span>Hiển thị</span>
 			<select name="limit" id="limit" onChange={handleLimit}>
 				<option value="12">12</option>
