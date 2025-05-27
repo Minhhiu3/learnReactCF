@@ -1,49 +1,40 @@
-import { useEffect, useState } from "react";
-import api from "../api";
+import { useState, useEffect } from "react";
 import { getAllProducts } from "../api/productApi";
 
-/**
- * * input: url, limit, skip
- * * output: list
- */
-
-// * products
-// * users
-
-// * https://dummyjson.com/products/search?q=apple&sortBy=price&order=asc&limit=30&skip=0
-
-// * const params = {
-// * 	seach: "",
-// * 	sort: "price",
-// * 	order: "asc",
-// * 	limit: 12,
-// * 	skip: 0,
-// * };
-
-const useFetchListWithParams = (path, params) => {
+const useFetchListWithParams = (path, defaultParams = {}) => {
 	const [list, setList] = useState([]);
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState(false);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
+	const [totalCount, setTotalCount] = useState(0);
+	const [params, setParams] = useState(defaultParams);
 
-	const fetchList = async () => {
+	const fetchList = async (customParams = {}) => {
 		try {
-			const { data } = await getAllProducts(path);
-			setList(data);
 			setLoading(true);
-			console.log(list);
+			const mergedParams = { ...params, ...customParams };
 
+			// Xoá param rỗng
+			if (!mergedParams.title_like) delete mergedParams.title_like;
+			if (!mergedParams.level) delete mergedParams.level;
 
-		} catch (error) {
+			console.log(" Đang fetch với params:", mergedParams);
+			const res = await getAllProducts(path, mergedParams);
+
+			setList(res.data);
+			setTotalCount(parseInt(res.headers["x-total-count"] || "0"));
+		} catch (err) {
+			setError(err);
+		} finally {
 			setLoading(false);
-			setError(error.message || "Failed!");
-			console.log(error);
 		}
 	};
 
+	// Gọi fetch khi `path` đổi
 	useEffect(() => {
 		fetchList();
-	}, []);
-	return [list, loading, error];
+	}, [path]);
+
+	return [list, loading, error, fetchList, setParams, totalCount];
 };
 
 export default useFetchListWithParams;

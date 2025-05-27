@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react'
 import { addProduct } from '../../api/productApi';
 import FormCommon from '../../FormCommon';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ProductSchema from '../../zod/ProductSchema';
-
-const ProductForm = () => {
+import { getDetailProduct, updateProduct } from '../../api/productApi';
+import { useParams, useNavigate, data } from 'react-router-dom';
+import productSchema from '../../zod/ProductSchema';
+import Message from '../../Message';
+const EditProductPage = () => {
+    const { id } = useParams();
+    console.log(id);
+    const navigate = useNavigate();
 
     const {
         register,
@@ -13,22 +19,37 @@ const ProductForm = () => {
         formState: { errors },
         reset,
     } = useForm({
-        resolver: zodResolver(ProductSchema)
+        resolver: zodResolver(productSchema)
     });
+
 
     const onSubmit = async (data) => {
         try {
-            const res = await addProduct(data);
-            console.log(res);
-
+            await updateProduct(id, data);
+            alert(Message.productMessage.updateSuccess)
+            navigate("/admin/products")
         } catch (error) {
-            console.log(error);
-
+            alert(`${Message.productMessage.errorHandle}: ${error}`)
         }
     }
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await getDetailProduct(id);
+                // if (data && data.title && data.description && data.status && data.level && data.id != undefined) {
+                reset(res.data);
+                // } else {
+                //     alert(Message.productMessage.checkApiData)
+                // }
+            } catch (error) {
+                alert(`${Message.productMessage.errorHandle}: ${error}`)
+            }
+        }
+        fetchData()
+    }, [id, reset]);
     return (
         <>
-            <h1>Add Product</h1>
+            <h1>edit Product</h1>
             <FormCommon handleSubmit={handleSubmit(onSubmit)}>
                 <div className='mb-3'>
                     <label htmlFor="title">Title</label>
@@ -58,14 +79,14 @@ const ProductForm = () => {
                     {errors.title && <span>{errors.status.message}</span>}
                 </div>
                 <div className='mb-3'>
-                    <button className="btn btn-primary">Add </button>{" "}
+                    <button className="btn btn-primary">update </button>{" "}
                     <button className="btn btn-secondary" onClick={reset}>
                         Cancel
                     </button>
                 </div>
             </FormCommon>
         </>
-    );
-};
+    )
+}
 
-export default ProductForm;
+export default EditProductPage
