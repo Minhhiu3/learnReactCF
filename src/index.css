@@ -1,0 +1,13 @@
+body[theme=dark] {
+    --background: #121212;
+    --text: #ffffff;
+    /* --primary: #bb86fc;
+  --secondary: #03dac6; */
+}
+
+body[theme=light] {
+    --background: #ffffff;
+    --text: #000000;
+    /* --primary: #6200ee;
+  --secondary: #03dac6; */
+}

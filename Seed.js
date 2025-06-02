@@ -8,6 +8,5 @@ const products = Array.from({ length: 50 }, () => ({
     description: faker.commerce.productName().substring(0, 10),
     level: faker.helpers.arrayElement(["low", "medium", "high"]),
     status: faker.helpers.arrayElement(["false", "true"]),
-
 }));
 fs.writeFileSync('db.json', JSON.stringify({ products }, null, 2));

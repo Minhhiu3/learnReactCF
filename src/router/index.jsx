@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import RegisterPage from "../pages/register/RegisterPage";
-import LoginPage from "../pages/LoginPage";
+import LoginPage from "../pages/register/LoginPage";
 import AboutPage from "../pages/AboutPage";
 import ClientLayout from "../layouts/ClientLayout";
 import NotFoundPage from "../pages/NotFoundPage";
@@ -15,6 +15,8 @@ import ProductForm from "../pages/admin/ProductForm";
 import ProductList from "../ProductList";
 import EditProductPage from "../pages/admin/EditProductPage";
 import DetailTodo from "../pages/admin/DetailTodo";
+import ProtectedRoute from "../components/ProtectedRoute";
+import ProfilePage from "../components/ProfilePage";
 
 const router = createBrowserRouter([
 	// * Layout Client
@@ -24,13 +26,14 @@ const router = createBrowserRouter([
 		children: [
 			{ index: true, element: <HomePage /> },
 			{ path: "/about", element: <AboutPage /> },
+			{ path: "/profile/me/:id", element: <ProfilePage /> }
 		],
 	},
 
 	// * Layout Admin
 	{
 		path: "/admin",
-		element: <AdminLayout />,
+		element: <ProtectedRoute />,
 		children: [
 			{ index: true, element: <DashBoardPage /> },
 			{ path: "products", element: <ProductListPage /> },

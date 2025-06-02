@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-
+import ToggleTheme from "./ToggleTheme";
 const Header = () => {
 	function test() {
 		let i = 0;
 		console.log(i++);
 	}
+
 	return (
 		<header>
 			<p>Logo</p>
 			<nav>
+				<ToggleTheme />
 				<ul>
 					<li>
 						<NavLink to="/">Home</NavLink>

@@ -1,35 +1,29 @@
 import styles from "./RegisterPage.module.css";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { registerSchema } from "../../zod/AuthSchema";
+import { loginSchema, registerSchema } from "../../zod/AuthSchema";
 import { registerApi } from "../../api/authApi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-const RegisterPage = () => {
+const LoginPage = () => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 		reset,
 	} = useForm({
-		resolver: zodResolver(registerSchema),
+		resolver: zodResolver(loginSchema),
 	})
 	console.log(1);
-
+	const nav = useNavigate();
 	const onSubmit = async (dataForm) => {
 		try {
-			// const { data } = await loginApi(dataForm);
-			// if (data.accessToken) {
-
-			// }
-			console.log(dataForm);
-			console.log("hi");
-
-			const res = await registerApi(dataForm);
-			console.log(res);
-
-			toast.success("Đăng ký thành công");
-			reset();
+			const { data } = dataForm;
+			if (data.accessToken) {
+				localStorage.setItem("accessToken", data.accessToken);
+				localStorage.setItem("user", JSON.stringify(data.user));
+				nav("/");
+			}
 		} catch (error) {
 			toast.error(error.response.data.message || "Đăng ký thất bại");
 			reset();
@@ -57,12 +51,6 @@ const RegisterPage = () => {
 					{errors.password && <span>{errors.password.message}</span>}
 				</div>
 
-				<div className={styles.formGroup}>
-					<label htmlFor="">Confirm Password</label>
-					<input type="password" {...register("confirmPassword", { required: true })} />
-					{errors.confirmPassword && <span>{errors.confirmPassword.message}</span>}
-				</div>
-
 				<div className="mb-3">
 					You have an account? <Link to={"auth/login"}>Login now!</Link>
 				</div>
@@ -75,4 +63,4 @@ const RegisterPage = () => {
 	);
 };
 
-export default RegisterPage;
+export default LoginPage;
